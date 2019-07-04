@@ -36,10 +36,17 @@ class Topic_modeling():
         data = pd.read_excel(self.path)
         data.columns = ['sentence']
         data = data.sentence.values.tolist()
-        # Delete repeated values
+        # Delete repeated quotations
         data = [list(set(text.splitlines())) for text in data]
         self.data = data
     
+    def word_correction(self):
+        changes = [('ঞ', 'ti'), ('Ć', 'fi'), ('Õ', 'fi'), ('ß', 'fi'), ('Ą', 'ff'), ('Ö', 'fl'), ('ϐ', 'f'), ('', 'tt')]
+        for i in range(len(self.data)):
+            for j in range(len(self.data[i])):
+                for change in changes:
+                    self.data[i][j] = self.data[i][j].replace(change[0],change[1])
+
     def data_to_words(self):
         for sentence in self.data:
             yield(gensim.utils.simple_preprocess(str(sentence), deacc=True))
@@ -69,6 +76,7 @@ class Topic_modeling():
         return texts_out
 
     def preprocess(self):
+        self.word_correction()
         data_words = self.data
         # Remove Stop Words
         data_words_nostops =  self.remove_stopwords(data_words)
