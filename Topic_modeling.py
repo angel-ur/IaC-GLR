@@ -41,7 +41,7 @@ class Topic_modeling():
         self.data = data
     
     def word_correction(self):
-        changes = [('ঞ', 'ti'), ('Ć', 'fi'), ('Õ', 'fi'), ('ß', 'fi'), ('Ą', 'ff'), ('Ö', 'fl'), ('ϐ', 'f'), ('', 'tt')]
+        changes = [('ঞ', 'ti'), ('Ć', 'fi'), ('Õ', 'fi'), ('ß', 'fi'), ('Ą', 'ff'), ('Ö', 'fl'), ('ϐ', 'f'), ('', 'tt'), ('profle', 'profile')]
         for i in range(len(self.data)):
             for j in range(len(self.data[i])):
                 for change in changes:
@@ -53,7 +53,7 @@ class Topic_modeling():
     
     def remove_stopwords(self, texts):
         stop_words = stopwords.words('english')
-        stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
+        stop_words.extend(['from', 'subject', 're', 'edu'])
         return [[word for word in simple_preprocess(str(doc)) if word not in stop_words] for doc in texts]
 
     def make_bigrams(self,texts):
@@ -109,9 +109,6 @@ class Topic_modeling():
                                                    id2word=self.id2word,
                                                    num_topics=num_topics, 
                                                    random_state=100,
-                                                   update_every=1,
-                                                   chunksize=100,
-                                                   passes=10,
                                                    alpha='auto',
                                                    per_word_topics=True)
         self.lda_model = lda_model        
