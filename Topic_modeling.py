@@ -41,7 +41,7 @@ class Topic_modeling():
         self.data = data
     
     def word_correction(self):
-        changes = [('ঞ', 'ti'), ('Ć', 'fi'), ('Õ', 'fi'), ('ß', 'fi'), ('Ą', 'ff'), ('Ö', 'fl'), ('ϐ', 'f'), ('', 'tt'), ('profle', 'profile')]
+        changes = [('ঞ', 'ti'), ('Ć', 'fi'), ('Õ', 'fi'), ('ß', 'fi'),('ø', 'fi'), ('Ą', 'ff'), ('Ö', 'fl'), ('ϐ', 'f'), ('', 'tt'), ('profle', 'profile')]
         for i in range(len(self.data)):
             for j in range(len(self.data[i])):
                 for change in changes:
