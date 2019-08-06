@@ -13,16 +13,13 @@
   margin: 0;
   padding: 0;
 }
-
 html, body {
   height: 100%;
 }
-
 body {
   font-family: "Roboto Mono", "Helvetica", sans-serif;
   font-size: 14px;
 }
-
 #logo {
   position: absolute;
   right: 00px;
@@ -31,65 +28,52 @@ body {
   height: 90px;
   z-index: 999999;
 }
-
 #display {
   color: #95A5A6;
   background: #212121;
 }
-
 #print {
   color: #000;
   background: #FFF;
 }
-
 h1 {
   font-size: 21px;
   font-weight: 300;
   font-weight: 300;
 }
-
 h2 {
   font-size: 18px;
   padding-bottom: 20px;
   font-weight: 300;
 }
-
 h3 {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
 }
-
 h4 {
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   padding-bottom:0px;
 }
-
-
 #meta_content h3 {
   float: left;
   padding-right: 8px;
 }
-
 p, #tooltip_content h3, ol, ul, table {
   padding-bottom: 10px;
 }
-
 ol, ul {
   padding-left: 20px;
 }
-
 ol b {
   display: block;
 }
-
 a {
   color: #16a085;
   text-decoration: none;
 }
-
 #panes {
     /* background: #e24d4d; */
   /* position: absolute; */
@@ -98,11 +82,9 @@ a {
   /* display: block; */
   /* z-index: 9999; */
 }
-
 a:hover {
   color: #2ecc71;
 }
-
 #header {
   height: 35px;
   /* padding-top: 20px; */
@@ -110,48 +92,37 @@ a:hover {
   padding-left:20px;
   position: relative;
 }
-
 #display #header, #display #toolbar {
   background: #111111;
   box-shadow: 0px 0px 4px #000;
 }
-
 #print #header, #print #toolbar {
   background: #FFF;
 }
-
-
 #canvas {
   position: absolute;
   height: 100%;
   width: 100%;
   display: block;
 }
-
-
 #toolbar {
   position: relative;
   padding-top: 10px;
   padding-bottom: 10px;
-
   width: 100%;
   overflow: auto;
 }
-
 /* #display #toolbar {
   background: #111111;
 }
-
 #print #toolbar {
   background: #FFF;
 } */
-
 .tool_item {
   padding-left: 20px;
   position: relative;
   float: left;
 }
-
 .pane_content {
   position: relative;
   float: left;
@@ -161,7 +132,6 @@ a:hover {
   overflow: auto;
   display: none;
 }
-
 /* Chrome only: */
 @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) { 
   .pane_content {
@@ -169,53 +139,41 @@ a:hover {
     padding-right: 10px;
   }
 }
-
-
 #helptip_content {
   float:right;
 }
-
 #display .pane_content {
   background: #191919;
 }
-
 #print .pane_content{
   background: #FFF;
 }
-
 #meta_content {
   float:right;
 }
-
 #meta_content::-webkit-scrollbar, #tooltip_content::-webkit-scrollbar {
   width: 1em;
 }
-
 #meta_content::-webkit-scrollbar-track, #tooltip_content::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-
 #meta_content::-webkit-scrollbar-thumb, #tooltip_content::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
-
 #histogram {
   display: block;
   height: 100px;
   padding-top: 50px;
   clear: both;
 }
-
 #display #histogram {
   opacity: 0.68;
 }
-
 .bin {
   width: 10%;
   float: left;
 }
-
 .bin div {
   font-size: 10px;
   display: block;
@@ -228,48 +186,39 @@ a:hover {
   -ms-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
 }
-
 #histogram:hover {
   opacity: 1.;
 }
-
 #display .circle {
   stroke-opacity: 0.18;
   stroke-width: 7px;
   stroke: #000;
 }
-
 #print .circle {
   stroke-opacity: 1;
   stroke-width: 2px;
   stroke: #000;
   stroke-linecap: round;
 }
-
 #print .link {
   stroke: #000;
 }
-
 #display .link {
   stroke: rgba(160, 160, 160, 0.5);
 }
-
 table {
   border-collapse: collapse;
   display: table;
   width: 100%;
   margin-bottom: 20px;
 }
-
 td, th {
   padding: 5px;
   text-align: left;
 }
-
 #display th {
   background: #212121
 }
-
 td {
   border-bottom: 1px solid #111;
 }
@@ -498,16 +447,13 @@ var height = document.getElementById("canvas").offsetHeight;
 var w = width;
 var h = height;
 var padding = 40;
-
 var focus_node = null, highlight_node = null;
 var text_center = false;
 var outline = false;
-
 // Size for zooming
 var size = d3.scale.pow().exponent(1)
            .domain([1,100])
            .range([8,24]);
-
 // Variety of variable inits
 var highlight_color = "blue";
 var highlight_trans = 0.1;
@@ -523,24 +469,18 @@ var max_base_node_size = 36;
 var min_zoom = 0.1;
 var max_zoom = 7;
 var zoom = d3.behavior.zoom().scaleExtent([min_zoom,max_zoom]);
-
-
 var tocolor = "fill";
 var towhite = "stroke";
 if (outline) {
   tocolor = "stroke";
   towhite = "fill";
 }
-
-
 // We draw the graph in SVG
 var svg = d3.select("#canvas").append("svg")
           .attr("width", width)
           .attr("height", height);
-
 svg.style("cursor","move");
 var g = svg.append("g");
-
 /**
  * Side panes
  * 
@@ -548,11 +488,9 @@ var g = svg.append("g");
  * 
  * 
  */
-
 // Show/Hide Functionality
 var toggle_pane = function(content, content_id, tag){
   var active = content.active ? false : true;
-
   if (active){
     content_id.style("display", "unset");
     tag.textContent = "[-]";
@@ -560,60 +498,44 @@ var toggle_pane = function(content, content_id, tag){
     content_id.style("display", "none");
     tag.textContent = "[+]";
   }
-
   // TODO: This is probably not the best way to find the correct height.
   var h = canvas_height - content.offsetTop - padding;
   content_id.style("height", h + "px")
-
   content.active = active;
 }
-
 d3.select("#tooltip_control").on("click", function() {
   toggle_pane(tooltip_content, 
               d3.select("#tooltip_content"), 
               d3.select("#tooltip_tag")[0][0]);
-
 });
-
 d3.select("#meta_control").on("click", function() {
   toggle_pane(meta_content, 
               d3.select("#meta_content"),
               d3.select("#meta_tag")[0][0])
-
 });
-
 d3.select("#help_control").on("click", function() {
   toggle_pane(helptip_content, 
               d3.select("#helptip_content"),
               d3.select("#helptip_tag")[0][0])
 });
-
-
-
 /**
  * 
  * Set up color scale
  * 
  * 
  */
-
 var colorscale = JSON.parse(document.getElementById("json_colorscale").dataset.colorscale);
 var domain = colorscale.map((x)=>x[0])
 var palette = colorscale.map((x)=>x[1])
-
 var color = d3.scale.linear()
   .domain(domain)
   .range(palette);
-
-
 /**
  *  Graph setup 
  * 
  * 
  */
-
 var graph = JSON.parse(document.getElementById("json_graph").dataset.graph);
-
               
 // Force settings
 var force = d3.layout.force()
@@ -621,26 +543,21 @@ var force = d3.layout.force()
             .gravity(0.2)
             .charge(-1200)
             .size([w,h]);
-
 force
   .nodes(graph.nodes)
   .links(graph.links)
   .start();
-
 var link = g.selectAll(".link")
             .data(graph.links)
             .enter().append("line")
               .attr("class", "link")
               .style("stroke-width", function(d) { return d.w * nominal_stroke; })
               .style("stroke-width", function(d) { return d.w * nominal_stroke; })
-
-
 var node = g.selectAll(".node")
             .data(graph.nodes)
             .enter().append("g")
               .attr("class", "node")
               .call(force.drag);
-
 // Double clicking on a node will center on it.
 node.on("dblclick.zoom", function(d) { d3.event.stopPropagation();
   var dcx = (window.innerWidth/2-d.x*zoom.scale());
@@ -648,10 +565,6 @@ node.on("dblclick.zoom", function(d) { d3.event.stopPropagation();
   zoom.translate([dcx,dcy]);
   g.attr("transform", "translate("+ dcx + "," + dcy  + ")scale(" + zoom.scale() + ")");
 });
-
-
-
-
 // Drop-shadow Filter
 var svg = d3.select("svg");
 var defs = svg.append("defs");
@@ -682,7 +595,6 @@ dropShadowFilter.append('svg:feBlend')
   .attr('in', 'SourceGraphic')
   .attr('in2', 'the-shadow')
   .attr('mode', 'normal');
-
 // Draw circles
 var circle = node.append("path")
   .attr("d", d3.svg.symbol()
@@ -695,8 +607,6 @@ var circle = node.append("path")
     return color(d.color);
   });
 //.style("filter", "url(#drop-shadow)");
-
-
 // Format all text 
 var text = g.selectAll(".text")
   .data(graph.nodes)
@@ -706,9 +616,6 @@ var text = g.selectAll(".text")
     .style("font-weight", "400")
     .style("color", "#2C3E50")
     .style("font-size", nominal_text_size + "px");
-
-
-
 if (text_center) {
   text.text(function(d) { return d.id; })
     .style("text-anchor", "middle");
@@ -716,8 +623,6 @@ if (text_center) {
   text.attr("dx", function(d) {return (size(d.size)||nominal_base_node_size);})
     .text(function(d) { return '\u2002'+d.id; });
 }
-
-
 /**
  * Mouse Interactivity
  * 
@@ -726,14 +631,12 @@ if (text_center) {
  * 
  * 
  */
-
 node.on("mouseover", function(d) {
   // Change node details
   set_highlight(d);
   d3.select("#tooltip_content").html(d.tooltip + "<br/>");
 }).on("mousedown", function(d) {
   // TODO: This seems to only stop the one particular node from moving?
-
   d3.event.stopPropagation();
   focus_node = d;
   if (highlight_node === null) {
@@ -742,7 +645,6 @@ node.on("mouseover", function(d) {
 }).on("mouseout", function(d) {
   exit_highlight();
 });
-
 d3.select(window).on("mouseup", function() {
   if (focus_node!==null){
     focus_node = null;
@@ -751,7 +653,6 @@ d3.select(window).on("mouseup", function() {
     exit_highlight();
   }
 });
-
 // Node highlighting logic
 function exit_highlight(){
   highlight_node = null;
@@ -759,13 +660,10 @@ function exit_highlight(){
     svg.style("cursor","move");
   }
 }
-
 function set_highlight(d){
   svg.style("cursor","pointer");
   if (focus_node!==null) d = focus_node;
 }
-
-
 // Zoom logic
 zoom.on("zoom", function() {
   var stroke = nominal_stroke;
@@ -777,19 +675,15 @@ zoom.on("zoom", function() {
     .type(function(d) { return d.type; }))
   if (!text_center) text.attr("dx", function(d) {
     return (size(d.size)*base_radius/nominal_base_node_size||base_radius); });
-
   var text_size = nominal_text_size;
   if (nominal_text_size*zoom.scale()>max_text_size) {
     text_size = max_text_size/zoom.scale(); }
   text.style("font-size",text_size + "px");
-
   g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 });
-
 svg.call(zoom);
 resize();
 d3.select(window).on("resize", resize);
-
 // Animation per tick
 force.on("tick", function() {
   node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
@@ -801,34 +695,25 @@ force.on("tick", function() {
   node.attr("cx", function(d) { return d.x; })
     .attr("cy", function(d) { return d.y; });
 });
-
-
-
 // Resizing window and redraws
 function resize() {
   var width = window.innerWidth, height = window.innerHeight;
   var width = document.getElementById("canvas").offsetWidth;
   var height = document.getElementById("canvas").offsetHeight;
   svg.attr("width", width).attr("height", height);
-
   force.size([force.size()[0]+(width-w)/zoom.scale(),
               force.size()[1]+(height-h)/zoom.scale()]).resume();
   w = width;
   h = height;
 }
-
-
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
-
 // Key press events
 window.addEventListener("keydown", function (event) {
 if (event.defaultPrevented) {
   return; // Do nothing if the event was already processed
 }
-
-
 switch (event.key) {
   case "f":
     console.log("Freeze graph")
@@ -862,7 +747,6 @@ switch (event.key) {
   case "e":
     force.gravity(0.4)
          .charge(-600);
-
     resize();
     break
   default:
